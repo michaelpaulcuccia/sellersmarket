@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import colors from 'colors';
-import products from '../backend/data/products.js';
+import productRoutes from './routes/productRoutes.js';
 
 //initialize dotenv
 dotenv.config()
@@ -30,21 +30,8 @@ const app = express();
     }
 })();
 
-//TEST
-app.get('/', (req, res) => {
-    res.send('Hello!')
-});
-
-//GET ALL PRODUCTS
-app.get('/api/products', (req, res) => {
-    res.json(products)
-});
-
-//GET A PRODUCT BY ID
-app.get('/api/products/:id', (req, res) => {
-    const product = products.find(p => p._id === req.params.id);
-    res.json(product);
-});
+//Routes
+app.use('/api/products', productRoutes);
 
 const PORT = process.env.PORT || 5000;
 

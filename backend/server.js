@@ -1,7 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
 import colors from 'colors';
+import mongoose from 'mongoose';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import productRoutes from './routes/productRoutes.js';
 
 //initialize dotenv
@@ -32,6 +33,10 @@ const app = express();
 
 //Routes
 app.use('/api/products', productRoutes);
+
+//error handling middleware
+app.use(notFound)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000;
 

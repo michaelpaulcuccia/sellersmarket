@@ -1,9 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import colors from 'colors';
 import mongoose from 'mongoose';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import productRoutes from './routes/productRoutes.js';
+
+import colors from 'colors';
 
 //initialize dotenv
 dotenv.config()

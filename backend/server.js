@@ -23,7 +23,7 @@ const app = express();
         });
 
         console.log(`MongoDB Connected: ${conn.connection.host}`.blue);
-        console.log('----//----//----');
+        console.log('----//----//----//----//----'.red);
 
     } catch (err) {
         console.error(`Error: ${err.message}`.red.bold);
@@ -42,7 +42,7 @@ app.use(errorHandler)
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log('----//----//----');
+    console.log('----//----//----//----//----'.red);
     console.log(`App listening in ${process.env.NODE_ENV} mode on port ${PORT}`.blue);
-    console.log('----//----//----');
+    console.log('----//----//----//----//----'.red);
 });

@@ -12,6 +12,12 @@ router.get('/', expressAsyncHandler(async (req, res) => {
     //empty object provides all
     const products = await Product.find({});
 
+    //ERROR CHECK 
+    /*
+    res.status(401);
+    throw new Error('Not Authorized');
+    */
+
     res.json(products)
 }));
 

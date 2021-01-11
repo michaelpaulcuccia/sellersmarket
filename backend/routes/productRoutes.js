@@ -30,7 +30,15 @@ router.get('/:id', expressAsyncHandler(async (req, res) => {
 
     //ensure that product exists
     if (product) {
+
+        //ERROR CHECK 
+        /*
+        res.status(401);
+        throw new Error('You got an error!');
+        */
+
         res.json(product);
+
     } else {
         res.status(404);
         throw new Error('Product Not Found');

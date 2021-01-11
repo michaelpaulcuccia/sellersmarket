@@ -7,33 +7,34 @@ import { listProductDetails } from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
-const ProductScreen = ({ match }) => {
+const ProductScreen = ({ history, match }) => {
 
     //component state
-
     const [quantity, setQuantity] = useState(0);
 
     //application state/redux
-
     const dispatch = useDispatch();
-
     const productDetails = useSelector(state => state.productDetails);
     const { loading, error, product } = productDetails;
-
     useEffect(() => {
         dispatch(listProductDetails(match.params.id));
     }, [dispatch, match]);
 
-
+    //button
+    const addToBasketHandler = () => {
+        history.push(`/basket/${match.params.id}?qty=${quantity}`);
+    }
 
     return (
         <>
             <Link className='btn btn-light my-3' to='/'>Go Back</Link>
             {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
                 <Row>
+
                     <Col md={6}>
                         <Image src={product.image} alt={product.name} fluid />
                     </Col>
+
                     <Col md={3}>
                         <ListGroup variant='flush'>
                             <ListGroup.Item>
@@ -50,6 +51,7 @@ const ProductScreen = ({ match }) => {
                             Description: {product.description}
                         </ListGroup.Item>
                     </Col>
+
                     <Col md={3}>
                         <Card>
                             <ListGroup>
@@ -89,9 +91,16 @@ const ProductScreen = ({ match }) => {
                                 )}
 
                                 <ListGroup.Item>
-                                    <Button className='btn-block' variant='dark' type='button' disabled={product.countInStock === 0}>
+                                    <Button
+                                        className='btn-block'
+                                        variant='dark'
+                                        type='button'
+                                        disabled={product.countInStock === 0}
+                                        onClick={addToBasketHandler}
+                                    >
                                         Add to Basket</Button>
                                 </ListGroup.Item>
+
                             </ListGroup>
                         </Card>
                     </Col>

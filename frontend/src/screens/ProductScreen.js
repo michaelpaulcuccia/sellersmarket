@@ -21,8 +21,8 @@ const ProductScreen = ({ history, match }) => {
     }, [dispatch, match]);
 
     //button
-    const addToBasketHandler = () => {
-        history.push(`/basket/${match.params.id}?qty=${quantity}`);
+    const addToCartHandler = () => {
+        history.push(`/cart/${match.params.id}?qty=${quantity}`);
     }
 
     return (
@@ -96,9 +96,9 @@ const ProductScreen = ({ history, match }) => {
                                         variant='dark'
                                         type='button'
                                         disabled={product.countInStock === 0}
-                                        onClick={addToBasketHandler}
+                                        onClick={addToCartHandler}
                                     >
-                                        Add to Basket</Button>
+                                        Add to Cart</Button>
                                 </ListGroup.Item>
 
                             </ListGroup>

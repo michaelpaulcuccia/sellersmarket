@@ -1,11 +1,11 @@
 import React from 'react'
 
-const BasketScreen = () => {
+const CartScreen = () => {
     return (
         <div>
-            Basket
+            Cart
         </div>
     )
 }
 
-export default BasketScreen
+export default CartScreen

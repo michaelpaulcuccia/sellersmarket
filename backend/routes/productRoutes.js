@@ -15,10 +15,11 @@ router.get('/', expressAsyncHandler(async (req, res) => {
     //ERROR CHECK 
     /*
     res.status(401);
-    throw new Error('Not Authorized');
+    throw new Error('You got an error!');
     */
 
-    res.json(products)
+    res.json(products);
+
 }));
 
 //GET A PRODUCT BY ID

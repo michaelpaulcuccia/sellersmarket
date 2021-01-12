@@ -10,7 +10,7 @@ import Message from '../components/Message';
 const ProductScreen = ({ history, match }) => {
 
     //component state
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
 
     //application state/redux
     const dispatch = useDispatch();

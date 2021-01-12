@@ -10,7 +10,7 @@ import Message from '../components/Message';
 const ProductScreen = ({ history, match }) => {
 
     //component state
-    const [quantity, setQuantity] = useState(1);
+    const [qty, setQty] = useState(1);
 
     //application state/redux
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const ProductScreen = ({ history, match }) => {
 
     //button
     const addToCartHandler = () => {
-        history.push(`/cart/${match.params.id}?qty=${quantity}`);
+        history.push(`/cart/${match.params.id}?qty=${qty}`);
     }
 
     return (
@@ -82,7 +82,7 @@ const ProductScreen = ({ history, match }) => {
                                         <Row>
                                             <Col>Qty</Col>
                                             <Col>
-                                                <Form.Control as='select' value={quantity} onChange={(event) => setQuantity(event.target.value)}>
+                                                <Form.Control as='select' value={qty} onChange={(event) => setQty(event.target.value)}>
                                                     {[...Array(product.countInStock).keys()].map(x => (<option key={x + 1} value={x + 1}>{x + 1}</option>))}
                                                 </Form.Control>
                                             </Col>

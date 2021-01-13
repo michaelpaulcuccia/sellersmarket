@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 import colors from 'colors';
 
@@ -11,6 +12,12 @@ dotenv.config()
 
 //initialize express
 const app = express();
+
+//accept JSON data in req.body
+app.use(express.json());
+
+//NOTE: not having semicolon on line 17 caused program to crash
+//https://github.com/expressjs/express/issues/3515
 
 //Database Connection with Mongoose
 (async () => {
@@ -34,6 +41,7 @@ const app = express();
 
 //Routes
 app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
 
 //error handling middleware
 app.use(notFound)

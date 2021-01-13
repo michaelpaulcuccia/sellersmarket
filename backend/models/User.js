@@ -23,7 +23,8 @@ const userSchema = mongoose.Schema({
 }, {
     //createdAt and updatedAt
     timestamps: true
-})
+}
+)
 
 //can access method with an instantiated user
 //compare entered password to one in DB that is hashed
@@ -31,6 +32,17 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password)
 }
 
-const User = mongoose.model('User', userSchema)
+//middleware - password 
+userSchema.pre('save', async function (next) {
+    //run only if password field is sent or modified
+    if (!this.isModified('password')) {
+        next();
+    }
+    const salt = await bcrypt.genSalt(10);
+    //plain text password set to hashed password
+    this.password = await bcrypt.hash(this.password, salt);
+})
 
-export default User
+const User = mongoose.model('User', userSchema);
+
+export default User;

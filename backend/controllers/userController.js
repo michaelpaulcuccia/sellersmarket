@@ -25,6 +25,63 @@ const authUser = expressAsyncHandler(async (req, res) => {
         throw new Error('Invalid Email Or Password');
     }
 
-})
+});
 
-export { authUser }
+//Register a new user
+//ROUTE: /api/users
+const registerUser = expressAsyncHandler(async (req, res) => {
+
+    const { name, email, password } = req.body;
+
+    //make sure user doesn't already exists
+    const userExists = await User.findOne({ email });
+
+    if (userExists) {
+        res.status(400);
+        throw new Error('User Already Exists');
+    }
+
+    const user = await User.create({
+        name,
+        email,
+        //password encrypted with middleware in models/User.js
+        password
+    });
+
+    if (user) {
+        res.status(201).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            token: generateToken(user._id)
+        })
+    } else {
+        res.status(400);
+        throw new Error('Invalid User Data');
+    }
+
+});
+
+//Get User Profile
+//ROUTE: /api/users/profile
+//***PROTECTED***
+const getUserProfile = expressAsyncHandler(async (req, res) => {
+
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin
+        });
+    } else {
+        res.status(404);
+        throw new Error('User Not Found')
+    }
+
+});
+
+export { authUser, registerUser, getUserProfile }

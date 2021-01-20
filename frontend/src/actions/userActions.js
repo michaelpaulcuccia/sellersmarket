@@ -162,6 +162,14 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
             payload: data
         });
 
+        //navbar update...
+        dispatch({
+            type: USER_LOGIN_SUCCESS,
+            payload: data
+        })
+        //navbar update...
+        localStorage.setItem('userInfo', JSON.stringify(data));
+
     } catch (error) {
         dispatch({
             type: USER_UPDATE_PROFILE_FAIL,

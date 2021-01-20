@@ -3,7 +3,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { getUserDetails } from '../actions/userActions';
+import { getUserDetails, updateUserProfile } from '../actions/userActions';
 
 
 const ProfileScreen = ({ history }) => {
@@ -23,6 +23,10 @@ const ProfileScreen = ({ history }) => {
     //for checking if user is logged in
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
+
+    //updated profile success message value - boolean
+    const userUpdateProfile = useSelector(state => state.userUpdateProfile);
+    const { success } = userUpdateProfile;
 
     useEffect(() => {
         //redirect to login if not logged in
@@ -48,7 +52,8 @@ const ProfileScreen = ({ history }) => {
         if (password !== confirmPassword) {
             setMessage('Passwords Do Not Match')
         } else {
-            //Dispatch Update Profile
+            //Dispatch Updated Profile
+            dispatch(updateUserProfile({ id: user._id, name, email, password }))
         }
     };
 
@@ -61,6 +66,7 @@ const ProfileScreen = ({ history }) => {
 
                 {message && <Message variant='danger'>{message}</Message>}
                 {error && <Message variant='danger'>{error}</Message>}
+                {success && <Message variant='success'>Profile Successfully Updated</Message>}
                 {loading && <Loader />}
 
                 <Form onSubmit={submitHandler}>

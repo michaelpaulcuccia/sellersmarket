@@ -15,13 +15,10 @@ const HomeScreen = () => {
     //destructure
     const { loading, error, products } = productList;
 
-
     useEffect(() => {
         //axios.get('/api/products')
         dispatch(listProducts());
     }, [dispatch]);
-
-    // console.log(products)
 
     let toolsArr = [];
     let cramponsArr = [];
@@ -38,8 +35,7 @@ const HomeScreen = () => {
         } else {
             ropesArr.push(item)
         }
-    })
-
+    });
 
     return (
         <>

@@ -9,17 +9,22 @@ const PlaceOrderScreen = () => {
 
     const cart = useSelector(state => state.cart);
 
-    //calculate prices
-    cart.itemsPrice = cart.cartItems.reduce((acc, curItem) => acc + curItem.price * curItem.qty, 0);
-    cart.shippingPrice = cart.itemsPrice > 1000 ? 0 : 15;
+    const addDecimals = (num) => {
+        return (Math.round(num * 100) / 100).toFixed(2)
+    };
 
+    //calculate prices
+    cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc, curItem) => acc + curItem.price * curItem.qty, 0));
+    cart.shippingPrice = addDecimals(cart.itemsPrice > 1000 ? 0 : 15);
+    cart.taxPrice = addDecimals(Number((0.08 * cart.itemsPrice).toFixed(2)));
+    cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2);
 
     //free shipping check
-    let totalBeforeShipping = cart.itemsPrice.toFixed(2);
+    //let totalBeforeShipping = cart.itemsPrice.toFixed(2);
+    let totalBeforeShipping = cart.itemsPrice;
     let thousand = 1000;
     let shippingCheckBeforeFix = thousand - totalBeforeShipping;
     let shippingCheck = shippingCheckBeforeFix.toFixed(2);
-    console.log(shippingCheck);
 
     const placeOrderHandler = () => {
 
@@ -86,11 +91,11 @@ const PlaceOrderScreen = () => {
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Items</Col>
-                                    <Col>${cart.itemsPrice.toFixed(2)}</Col>
+                                    <Col>${cart.itemsPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
 
-                            {cart.itemsPrice && cart.itemsPrice.toFixed(2) < 1000 ?
+                            {cart.itemsPrice && cart.itemsPrice < 1000 ?
                                 <ListGroup.Item>
                                     <Row>
                                         <Col>

@@ -38,6 +38,7 @@ const CartScreen = ({ match, location, history }) => {
 
             <Col md={8}>
                 <h1 className='cartScreen_shoppingCartH1'>Shopping Cart</h1>
+                <p>Free shipping when you order $1,000 or more of merchandise</p>
                 {cartItems.length === 0 ?
                     <Message>Your Cart is Empty <Link to='/'>Go Back</Link> </Message>
                     :

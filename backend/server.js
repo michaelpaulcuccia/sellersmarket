@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 
 import colors from 'colors';
 
@@ -42,6 +43,7 @@ app.use(express.json());
 //Routes
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
 
 //error handling middleware
 app.use(notFound)

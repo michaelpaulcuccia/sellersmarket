@@ -43,7 +43,6 @@ const LoginScreen = ({ location, history }) => {
 
             <Col>
                 <Image src={loginImage} fluid style={{ paddingTop: '3%', borderRadius: '7%' }} />
-                pic
             </Col>
 
             <Col>

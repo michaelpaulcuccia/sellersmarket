@@ -30,4 +30,20 @@ const addOrderItems = expressAsyncHandler(async (req, res) => {
 
 })
 
-export { addOrderItems }
+//GET ORDER BY ID
+//ROUTE: /api/orders/:id
+const getOrderById = expressAsyncHandler(async (req, res) => {
+
+    //get name & email that is associated with order from user collection,  
+    const order = await Order.findById(req.params.id).populate('user', 'name email');
+
+    if (order) {
+        res.json(order);
+    } else {
+        res.status(404);
+        throw new Error('Order Not Found');
+    }
+
+})
+
+export { addOrderItems, getOrderById }

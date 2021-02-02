@@ -35,7 +35,7 @@ const OrderScreen = ({ match }) => {
 
             <>
 
-                <h1>Order {order._id}</h1>
+                <h3>Order {order._id}</h3>
 
                 <Row>
                     <Col md={8}>
@@ -101,7 +101,7 @@ const OrderScreen = ({ match }) => {
                             <ListGroup variant='flush'>
 
                                 <ListGroup.Item>
-                                    <h2>Order Summary</h2>
+                                    <h2>Order Details</h2>
                                 </ListGroup.Item>
 
                                 <ListGroup.Item>

@@ -32,7 +32,6 @@ const protect = expressAsyncHandler(async (req, res, next) => {
         throw new Error('Not Authorized, No Token')
     }
 
-
 })
 
 export { protect }

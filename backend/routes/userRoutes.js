@@ -16,9 +16,6 @@ router.route('/').post(registerUser);
 //***PROTECTED***
 router.route('/profile').get(protect, getUserProfile);
 
-//NOTE: could also chain together Get User Profile AND Update User Profile
-//router.route('/profile').get(protect, getUserProfile).put(protect, updateUserProfile)
-
 //Update User Profile
 //ROUTE: /api/users/profile
 //***PROTECTED***

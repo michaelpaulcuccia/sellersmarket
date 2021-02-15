@@ -6,8 +6,6 @@ import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 
-import colors from 'colors';
-
 //initialize dotenv
 dotenv.config()
 
@@ -30,8 +28,7 @@ app.use(express.json());
             useFindAndModify: false
         });
 
-        console.log(`MongoDB Connected: ${conn.connection.host}`.blue);
-        console.log('----//----//----//----//----'.red);
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
 
     } catch (err) {
         console.error(`Error: ${err.message}`.red.bold);
@@ -55,7 +52,5 @@ app.use(errorHandler)
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log('----//----//----//----//----'.red);
-    console.log(`App listening in ${process.env.NODE_ENV} mode on port ${PORT}`.blue);
-    console.log('----//----//----//----//----'.red);
+    console.log(`App listening in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });

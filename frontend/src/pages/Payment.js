@@ -5,7 +5,7 @@ import FormContainer from '../components/FormContainer';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { savePaymentMethod } from '../actions/cartActions';
 
-const PaymentScreen = ({ history }) => {
+const Payment = ({ history }) => {
 
     const cart = useSelector(state => state.cart);
     const { shippingAddress } = cart;
@@ -73,4 +73,4 @@ const PaymentScreen = ({ history }) => {
     )
 }
 
-export default PaymentScreen
+export default Payment;

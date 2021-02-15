@@ -8,7 +8,7 @@ import { login } from '../actions/userActions';
 import loginImage from '../appImages/loginImage.jpg';
 
 
-const LoginScreen = ({ location, history }) => {
+const Login = ({ location, history }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -82,4 +82,4 @@ const LoginScreen = ({ location, history }) => {
     )
 }
 
-export default LoginScreen
+export default Login;

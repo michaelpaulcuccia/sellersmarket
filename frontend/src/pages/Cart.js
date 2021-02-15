@@ -5,7 +5,7 @@ import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 
-const CartScreen = ({ match, location, history }) => {
+const Cart = ({ match, location, history }) => {
 
     const productId = match.params.id;
 
@@ -37,7 +37,7 @@ const CartScreen = ({ match, location, history }) => {
         <Row>
 
             <Col md={8}>
-                <h1 className='cartScreen_shoppingCartH1'>Shopping Cart</h1>
+                <h1 className='cart_shoppingCartH1'>Shopping Cart</h1>
                 <p>Free shipping when you order $1,000 or more of merchandise</p>
                 {cartItems.length === 0 ?
                     <Message>Your Cart is Empty <Link to='/'>Go Back</Link> </Message>
@@ -78,7 +78,7 @@ const CartScreen = ({ match, location, history }) => {
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
                             <h2
-                                className='cartScreen_subtotalh2'>
+                                className='cart_subtotalh2'>
                                 Subtotal ({cartItems.reduce((accumulator, current) => accumulator + current.qty, 0)}) items
                             </h2>
                             ${cartItems.reduce((accumulator, current) => accumulator + current.qty * current.price, 0).toFixed(2)}
@@ -97,4 +97,4 @@ const CartScreen = ({ match, location, history }) => {
     )
 }
 
-export default CartScreen;
+export default Cart;

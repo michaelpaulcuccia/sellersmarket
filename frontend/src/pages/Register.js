@@ -8,7 +8,7 @@ import { register } from '../actions/userActions';
 import registerImage from '../appImages/registerImage.png';
 
 
-const RegisterScreen = ({ location, history }) => {
+const Register = ({ location, history }) => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -117,4 +117,4 @@ const RegisterScreen = ({ location, history }) => {
     )
 }
 
-export default RegisterScreen
+export default Register;

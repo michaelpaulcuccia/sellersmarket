@@ -9,7 +9,7 @@ import Loader from '../components/Loader';
 import { getOrderDetails, payOrder } from '../actions/orderActions';
 import { ORDER_PAY_RESET } from '../constants/orderConstants';
 
-const OrderScreen = ({ match }) => {
+const Order = ({ match }) => {
 
     const orderId = match.params.id;
 
@@ -86,10 +86,10 @@ const OrderScreen = ({ match }) => {
                                     <strong>Address: </strong>
                                     {order.shippingAddress.address}, {order.shippingAddress.city}, {order.shippingAddress.postalCode}, {order.shippingAddress.country}
                                 </p>
-                                {order.isDelivered ?
+                                {/* {order.isDelivered ?
                                     <Message variant='success'>Deliverd on {order.deliveredAt}</Message> :
                                     <Message variant='danger'>Not Delivered</Message>
-                                }
+                                } */}
                             </ListGroup.Item>
 
                             <ListGroup.Item>
@@ -193,4 +193,4 @@ const OrderScreen = ({ match }) => {
     )
 }
 
-export default OrderScreen
+export default Order;

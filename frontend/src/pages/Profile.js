@@ -9,7 +9,7 @@ import { listMyOrders } from '../actions/orderActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 
 
-const ProfileScreen = ({ history }) => {
+const Profile = ({ history }) => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -164,4 +164,4 @@ const ProfileScreen = ({ history }) => {
     )
 }
 
-export default ProfileScreen
+export default Profile;

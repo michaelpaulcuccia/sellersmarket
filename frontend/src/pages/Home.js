@@ -6,7 +6,7 @@ import Product from '../components/Product';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
-const HomeScreen = () => {
+const Home = () => {
 
     const dispatch = useDispatch();
 
@@ -99,4 +99,4 @@ const HomeScreen = () => {
     )
 }
 
-export default HomeScreen;
+export default Home;

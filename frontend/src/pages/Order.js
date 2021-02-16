@@ -86,10 +86,6 @@ const Order = ({ match }) => {
                                     <strong>Address: </strong>
                                     {order.shippingAddress.address}, {order.shippingAddress.city}, {order.shippingAddress.postalCode}, {order.shippingAddress.country}
                                 </p>
-                                {/* {order.isDelivered ?
-                                    <Message variant='success'>Deliverd on {order.deliveredAt}</Message> :
-                                    <Message variant='danger'>Not Delivered</Message>
-                                } */}
                             </ListGroup.Item>
 
                             <ListGroup.Item>

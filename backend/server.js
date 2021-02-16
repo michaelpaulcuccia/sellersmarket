@@ -1,3 +1,4 @@
+import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
@@ -5,7 +6,10 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
-import path from 'path'
+
+import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 
 //initialize dotenv
 dotenv.config()
@@ -52,13 +56,11 @@ app.use(errorHandler);
 
 //deployment
 const __dirname = path.resolve();
-
-//serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'public')));
-    app.get('*', function (req, res) {
-        res.sendFile(path.join(__dirname, 'public', 'index.html'));
-    });
+    app.use(express.static(path.join(__dirname, '/frontend/build')))
+
+    app.get('*', (req, res) =>
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html')))
 }
 
 const PORT = process.env.PORT || 5000;

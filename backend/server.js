@@ -9,29 +9,29 @@ import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 
 //initialize dotenv
-dotenv.config()
+dotenv.config();
 
-    //NOTE: not having semicolon on line 17 caused program to crash
-    //https://github.com/expressjs/express/issues/3515
+//NOTE: not having semicolon on line 17 caused program to crash
+//https://github.com/expressjs/express/issues/3515
 
-    //Database Connection with Mongoose
-    (async () => {
-        try {
-            const conn = await mongoose.connect(process.env.MONGO_URI, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-                useCreateIndex: true,
-                useFindAndModify: false
-            });
+//Database Connection with Mongoose
+(async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useCreateIndex: true,
+            useFindAndModify: false
+        });
 
-            console.log(`MongoDB Connected: ${conn.connection.host}`);
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
 
-        } catch (err) {
-            console.error(`Error: ${err.message}`.red.bold);
-            //exit process with failure
-            process.exit(1);
-        }
-    })();
+    } catch (err) {
+        console.error(`Error: ${err.message}`.red.bold);
+        //exit process with failure
+        process.exit(1);
+    }
+})();
 
 //initialize express
 const app = express();
